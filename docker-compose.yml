@@ -1,0 +1,38 @@
+version: '3.8'
+
+volumes:
+  db-data:
+    external: false
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - ./tmp/postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      - index_blog_network
+
+  api:
+    container_name: index_blog_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/index_blog_development
+      RAILS_ENV: development
+    volumes:
+      - .:/index_blog
+    ports:
+      - '3000:3000'
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    networks:
+      - index_blog_network
+
+networks:
+  index_blog_network:
+    driver: bridge
