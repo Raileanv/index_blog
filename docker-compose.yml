@@ -23,7 +23,7 @@ services:
       DATABASE_URL: postgres://postgres:password@db:5432/index_blog_development
       RAILS_ENV: development
     volumes:
-      - .:/index_blog
+      - .:/app
     ports:
       - '3000:3000'
     tty: true
@@ -32,6 +32,7 @@ services:
       - db
     networks:
       - index_blog_network
+    command: bash -c "rails db:migrate && rails s -b '0.0.0.0'"
 
 networks:
   index_blog_network:
