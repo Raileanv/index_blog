@@ -22,8 +22,10 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/index_blog_development
       RAILS_ENV: development
+      REDIS_URL: "redis://redis:6379"
     volumes:
       - .:/app
+      - ./tmp/letter_opener:/app/tmp/letter_opener
     ports:
       - '3000:3000'
     tty: true
@@ -33,6 +35,27 @@ services:
     networks:
       - index_blog_network
     command: bash -c "rails db:migrate && rails s -b '0.0.0.0'"
+
+  redis:
+    image: 'redis:latest'
+    ports:
+      - '6379:6379'
+    networks:
+      - index_blog_network
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -c 3
+    volumes:
+      - .:/app
+    depends_on:
+      - 'api'
+      - 'redis'
+      - db
+    environment:
+      - REDIS_URL=redis://redis:6379
+    networks:
+      - index_blog_network
 
 networks:
   index_blog_network:
