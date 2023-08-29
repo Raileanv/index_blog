@@ -38,6 +38,7 @@ gem 'rack-cors'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-rails'
 end
 
 group :development do
@@ -49,3 +50,5 @@ gem 'devise-api'
 
 gem 'sidekiq'
 gem 'sinatra', require: false # For Sidekiq web UI
+
+gem 'active_storage_validations'

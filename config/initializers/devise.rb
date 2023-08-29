@@ -311,3 +311,21 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 end
+
+module TokenResponseDecorator
+  def body
+    body = super
+
+    unless body.key?(:resource_owner)
+      body.merge!({
+        avatar_path: resource_owner.avatar_url,
+        first_name: resource_owner.first_name,
+        last_name: resource_owner.last_name
+      })
+    end
+
+    body
+  end
+end
+
+Devise::Api::Responses::TokenResponse.prepend TokenResponseDecorator

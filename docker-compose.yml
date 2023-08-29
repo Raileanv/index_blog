@@ -11,6 +11,7 @@ services:
       - ./tmp/postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+      POSTGRES_HOST: db
     networks:
       - index_blog_network
 
@@ -23,6 +24,7 @@ services:
       DATABASE_URL: postgres://postgres:password@db:5432/index_blog_development
       RAILS_ENV: development
       REDIS_URL: "redis://redis:6379"
+      POSTGRES_HOST: db
     volumes:
       - .:/app
       - ./tmp/letter_opener:/app/tmp/letter_opener
