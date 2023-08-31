@@ -6,6 +6,15 @@ Rails.application.routes.draw do
       mount Sidekiq::Web => '/sidekiq'
       mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
+      namespace :admin do
+        resources :users do
+          member do
+            put :ban
+            put :unban
+          end
+        end
+      end
+
       resources :articles, only: %i[index show create update destroy] do
         scope module: 'articles' do
           resources :comments, only: %i[create index] do

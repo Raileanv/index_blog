@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :validatable, :api
+  devise :database_authenticatable, :registerable,
+         :confirmable, :lockable, :api,
+         :recoverable, :rememberable, :validatable
 
   DEFAULT_AVATAR = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'.freeze
 

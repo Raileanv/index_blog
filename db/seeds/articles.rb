@@ -13,12 +13,20 @@ module Seeds
         {
           title: FFaker::Book.title,
           description: FFaker::Lorem.paragraph,
-          author_id: User.pluck(:id).sample,
-          category_id: Category.pluck(:id).sample,
+          author_id: user_ids.sample,
+          category_id: category_ids.sample,
           created_at: Time.now,
           updated_at: Time.now
         }
       end
+    end
+
+    def category_ids
+      @category_ids ||= Category.pluck(:id)
+    end
+
+    def user_ids
+      @user_ids ||= User.pluck(:id)
     end
   end
 end
