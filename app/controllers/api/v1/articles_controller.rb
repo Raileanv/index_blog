@@ -13,6 +13,13 @@ module Api
                       Article.ordered.with_pagination(params[:page], params[:per_page])
                     end
 
+        if params[:start_date].present? && params[:end_date].present?
+          start_date = Date.parse(params[:start_date])
+          end_date = Date.parse(params[:end_date])
+
+          @articles = @articles.created_between(start_date, end_date)
+        end
+
         render json: {
           articles: @articles,
           meta: {

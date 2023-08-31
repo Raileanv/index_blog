@@ -18,7 +18,7 @@ class Article < ApplicationRecord
                     tsearch: { prefix: true }
                   }
 
-  default_scope -> { kept.published }
+  default_scope -> { preload(:category).kept.published }
 
   belongs_to :author, class_name: 'User'
   belongs_to :category, optional: true
@@ -33,6 +33,9 @@ class Article < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :with_pagination, ->(page, per_page = PER_PAGE) { page(page).per(per_page) }
+  scope :created_between, lambda { |start_date, end_date|
+    where(created_at: start_date.beginning_of_day..end_date.end_of_day) if start_date.present? && end_date.present?
+  }
 
   after_save :limit_number_of_versions
 

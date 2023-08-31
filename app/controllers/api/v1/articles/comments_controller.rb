@@ -6,7 +6,7 @@ module Api::V1::Articles
       @comments = @article.comments.ordered_by_rating.with_pagination(params[:page], params[:per_page])
 
       render json: {
-        articles: @comments,
+        comments: @comments,
         meta: {
           total_pages: @comments.total_pages,
           current_page: @comments.current_page,
