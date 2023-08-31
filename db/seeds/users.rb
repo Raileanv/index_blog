@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Seeds
   class Users < Seeds::Base
     USERS_COUNT = 10_000
@@ -23,7 +25,7 @@ module Seeds
     end
 
     def password_digest
-      @password ||= Devise::Encryptor.digest(User, 'defaultpassword')
+      @password_digest ||= Devise::Encryptor.digest(User, 'defaultpassword')
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Article < ApplicationRecord
   include Rails.application.routes.url_helpers
   include Discard::Model
@@ -7,7 +9,7 @@ class Article < ApplicationRecord
 
   PER_PAGE = 25
   VERSIONS_LIMIT = 5
-  DEFAULT_COVER = 'https://dummyimage.com/300x300/8adc16/a97b60.png?text='.freeze
+  DEFAULT_COVER = 'https://dummyimage.com/300x300/8adc16/a97b60.png?text='
 
   pg_search_scope :search_by_criteria,
                   against: [:title],

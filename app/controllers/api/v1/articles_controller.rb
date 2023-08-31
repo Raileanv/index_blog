@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class ArticlesController < ApplicationController
       before_action :set_article, only: %i[show update destroy]
       before_action :check_ownership, only: %i[update destroy]
 
+      # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/MethodLength
       # GET api/v1/articles
       def index
         @articles = if params[:query].present?
@@ -31,6 +35,8 @@ module Api
           }
         }
       end
+      # rubocop:enable Metrics/AbcSize
+      # rubocop:enable Metrics/MethodLength
 
       # GET api/v1/articles/:id
       def show

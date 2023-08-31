@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :devise_api_token, class: 'Devise::Api::Token' do
     association :resource_owner, factory: :user

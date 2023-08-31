@@ -1,19 +1,25 @@
-module Api::V1::Admin
-  class UsersController < ApplicationController
-    before_action :authenticate_admin! # Ensure the user is an admin
+# frozen_string_literal: true
 
-    def ban
-      user = User.find(params[:id])
-      user.lock_access!
+module Api
+  module V1
+    module Admin
+      class UsersController < ApplicationController
+        before_action :authenticate_admin! # Ensure the user is an admin
 
-      render json: { message: 'User has been banned.' }, status: :ok
-    end
+        def ban
+          user = User.find(params[:id])
+          user.lock_access!
 
-    def unban
-      user = User.find(params[:id])
-      user.unlock_access!
+          render json: { message: 'User has been banned.' }, status: :ok
+        end
 
-      render json: { message: 'User ban has been removed.' }, status: :ok
+        def unban
+          user = User.find(params[:id])
+          user.unlock_access!
+
+          render json: { message: 'User ban has been removed.' }, status: :ok
+        end
+      end
     end
   end
 end

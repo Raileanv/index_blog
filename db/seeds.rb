@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Hardcoded seed ensures that the data generated here
 # always stays the same on each run
 FFaker::Random.seed = 1_111

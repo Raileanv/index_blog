@@ -1,13 +1,13 @@
-class Users::TokensController < Devise::Api::TokensController
-  def sign_in
-    super
-  end
+# frozen_string_literal: true
 
-  private
+module Users
+  class TokensController < Devise::Api::TokensController
+    private
 
-  def sign_up_params
-    additional_params = params.permit(:first_name, :last_name, :avatar)
+    def sign_up_params
+      additional_params = params.permit(:first_name, :last_name, :avatar)
 
-    super.merge(additional_params)
+      super.merge(additional_params)
+    end
   end
 end

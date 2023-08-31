@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 
@@ -5,7 +7,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :api,
          :recoverable, :rememberable, :validatable
 
-  DEFAULT_AVATAR = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'.freeze
+  DEFAULT_AVATAR = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
 
   has_one_attached :avatar
   has_many :articles, foreign_key: 'author_id', dependent: :destroy

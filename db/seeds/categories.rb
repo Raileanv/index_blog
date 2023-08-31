@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Seeds
   class Categories < Seeds::Base
     CATEGORIES_COUNT = 3
@@ -7,10 +9,6 @@ module Seeds
     end
 
     private
-
-    def array_of_attributes(count)
-      super(count)
-    end
 
     def klass_attributes
       {

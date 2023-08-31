@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Seeds
   class Articles < Seeds::Base
     ARTICLES_COUNT = 20_000
