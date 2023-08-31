@@ -28,6 +28,7 @@ class Article < ApplicationRecord
 
   has_one_attached :cover
   validates :cover, content_type: %w[image/png image/svg+xml image/jpeg], size: { less_than: 5.megabytes }
+  validates :title, presence: true, length: { minimum: 3, maximum: 100 }
 
   enum status: { hidden: 'hidden', published: 'published' }
 

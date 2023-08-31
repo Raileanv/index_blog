@@ -17,7 +17,8 @@ module Api::V1::Articles
 
     # POST /articles/:article_id/versions/:id/rollback
     def rollback
-      version = @article.versions[params[:id].to_i]
+      version = @article.versions.find(params[:id])
+
       if version.reify
         version.reify.save!
         render json: { message: 'Article rolled back successfully' }, status: :ok

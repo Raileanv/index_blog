@@ -44,6 +44,15 @@ group :development, :test do
   gem 'tty-progressbar' # Fancy console output
 end
 
+group :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+end
+
 group :development do
   gem 'letter_opener_web'
 end
