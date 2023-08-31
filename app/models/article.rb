@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+  include Rails.application.routes.url_helpers
   include Discard::Model
   include PgSearch::Model
 
@@ -6,6 +7,7 @@ class Article < ApplicationRecord
 
   PER_PAGE = 25
   VERSIONS_LIMIT = 5
+  DEFAULT_COVER = 'https://dummyimage.com/300x300/8adc16/a97b60.png?text='.freeze
 
   pg_search_scope :search_by_criteria,
                   against: [:title],
@@ -48,6 +50,20 @@ class Article < ApplicationRecord
 
   def tag_list
     tags.map(&:name).join(', ')
+  end
+
+  def cover_url
+    if cover.attached?
+      rails_blob_url(cover, only_path: true)
+    else
+      DEFAULT_COVER
+    end
+  end
+
+  def as_json(options = {})
+    super(options).merge({
+                           'cover_url' => cover_url
+                         })
   end
 
   private

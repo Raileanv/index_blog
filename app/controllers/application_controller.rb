@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
   end
 
   def ban_check!
-    return unless current_user.access_locked?
+    return unless current_user&.access_locked?
 
     render json: { error: 'Your account has been banned' }, status: :unauthorized
   end

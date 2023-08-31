@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { tokens: 'users/tokens' }
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
   namespace :api do
     namespace :v1 do
-      require 'sidekiq/web'
-      mount Sidekiq::Web => '/sidekiq'
-      mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-
       namespace :admin do
         resources :users do
           member do
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
               put :dislike
             end
           end
-          resources :versions, only: [:index, :show] do
+          resources :versions, only: %i[index show] do
             member do
               post :rollback
             end
