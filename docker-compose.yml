@@ -1,19 +1,22 @@
 version: '3.8'
 
 volumes:
-  db-data:
-    external: false
+  db_data:
+    name: db_data
+    driver: local
 
 services:
   db:
     image: postgres:13
     volumes:
-      - ./tmp/postgres_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_HOST: db
     networks:
       - index_blog_network
+    ports:
+      - '5432:5432'
 
   api:
     container_name: index_blog_api

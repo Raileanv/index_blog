@@ -1,12 +1,15 @@
 class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :validatable, :api
+
   DEFAULT_AVATAR = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'.freeze
 
   has_one_attached :avatar
-
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :validatable, :api
+  has_many :articles, foreign_key: 'author_id', dependent: :destroy
+  has_many :comments
+  has_many :comment_votes, dependent: :destroy
 
   validates :avatar, content_type: %w[image/png image/svg+xml image/jpeg], size: { less_than: 5.megabytes }
 

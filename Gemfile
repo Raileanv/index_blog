@@ -38,17 +38,24 @@ gem 'rack-cors'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'ffaker'
+  gem 'pastel'
   gem 'pry-rails'
+  gem 'tty-progressbar' # Fancy console output
 end
 
 group :development do
   gem 'letter_opener_web'
 end
 
+gem 'activerecord-import'
+gem 'active_storage_validations'
 gem 'devise'
 gem 'devise-api'
-
+gem 'discard'
+gem 'dry-monads'
+gem 'kaminari'
+gem 'paper_trail'
+gem 'pg_search'
 gem 'sidekiq'
 gem 'sinatra', require: false # For Sidekiq web UI
-
-gem 'active_storage_validations'
