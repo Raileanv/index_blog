@@ -1,0 +1,742 @@
+{
+	"info": {
+		"_postman_id": "d3fd71ee-da4b-42bd-a52e-317663adc78f",
+		"name": "INDEX test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4144826"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "articles controller",
+							"item": [
+								{
+									"name": "comments controller",
+									"item": [
+										{
+											"name": "create",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "value",
+															"value": "This is a comment on the article.",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{api_v1_base_url}}/articles/:article_id/comments",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"articles",
+														":article_id",
+														"comments"
+													],
+													"variable": [
+														{
+															"key": "article_id",
+															"value": ""
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "like",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": []
+												},
+												"url": {
+													"raw": "{{api_v1_base_url}}/articles/:article_id/comments/:comment_id/like",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"articles",
+														":article_id",
+														"comments",
+														":comment_id",
+														"like"
+													],
+													"variable": [
+														{
+															"key": "article_id",
+															"value": ""
+														},
+														{
+															"key": "comment_id",
+															"value": ""
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "dislike",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{api_v1_base_url}}/articles/:article_id/comments/:comment_id/dislike",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"articles",
+														":article_id",
+														"comments",
+														":comment_id",
+														"dislike"
+													],
+													"variable": [
+														{
+															"key": "article_id",
+															"value": ""
+														},
+														{
+															"key": "comment_id",
+															"value": ""
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "index",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "page",
+															"value": "",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{api_v1_base_url}}/articles/:article_id/comments",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"articles",
+														":article_id",
+														"comments"
+													],
+													"variable": [
+														{
+															"key": "article_id",
+															"value": ""
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "versions_controller",
+									"item": [
+										{
+											"name": "index",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{api_v1_base_url}}/articles/:article_id/versions",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"articles",
+														":article_id",
+														"versions"
+													],
+													"variable": [
+														{
+															"key": "article_id",
+															"value": "16748"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "show",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{api_v1_base_url}}/articles/:article_id/versions/:id",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"articles",
+														":article_id",
+														"versions",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "article_id",
+															"value": "16748"
+														},
+														{
+															"key": "id",
+															"value": "1"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "rollback",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{api_v1_base_url}}/articles/:article_id/versions/:id/rollback",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"articles",
+														":article_id",
+														"versions",
+														":id",
+														"rollback"
+													],
+													"variable": [
+														{
+															"key": "article_id",
+															"value": "16748"
+														},
+														{
+															"key": "id",
+															"value": "2"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "create",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{auth_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "dry-rb",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "desc 2",
+													"type": "text"
+												},
+												{
+													"key": "status",
+													"value": "published",
+													"type": "text"
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "tag_list",
+													"value": "sql,rails",
+													"type": "text"
+												},
+												{
+													"key": "cover",
+													"type": "file",
+													"src": []
+												}
+											]
+										},
+										"url": {
+											"raw": "{{api_v1_base_url}}/articles",
+											"host": [
+												"{{api_v1_base_url}}"
+											],
+											"path": [
+												"articles"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{auth_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "new version 2",
+													"type": "text"
+												},
+												{
+													"key": "cover",
+													"type": "file",
+													"src": []
+												},
+												{
+													"key": "status",
+													"value": "published",
+													"type": "text"
+												},
+												{
+													"key": "tag_list",
+													"value": "ruby",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{api_v1_base_url}}/articles/:id",
+											"host": [
+												"{{api_v1_base_url}}"
+											],
+											"path": [
+												"articles",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "16748"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{auth_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{api_v1_base_url}}/articles/:id",
+											"host": [
+												"{{api_v1_base_url}}"
+											],
+											"path": [
+												"articles",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "index",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{auth_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "page",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "query",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "start_date",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "end_date",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{api_v1_base_url}}/articles",
+											"host": [
+												"{{api_v1_base_url}}"
+											],
+											"path": [
+												"articles"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "show",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{auth_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{api_v1_base_url}}/articles/:id",
+											"host": [
+												"{{api_v1_base_url}}"
+											],
+											"path": [
+												"articles",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "categories controller",
+							"item": [
+								{
+									"name": "index",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{auth_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{api_v1_base_url}}/categories",
+											"host": [
+												"{{api_v1_base_url}}"
+											],
+											"path": [
+												"categories"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "admin",
+							"item": [
+								{
+									"name": "users_controller",
+									"item": [
+										{
+											"name": "ban",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{api_v1_base_url}}/admin/users/:id/ban",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"admin",
+														"users",
+														":id",
+														"ban"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "10000"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "unban",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{auth_token}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{api_v1_base_url}}/admin/users/:id/unban",
+													"host": [
+														"{{api_v1_base_url}}"
+													],
+													"path": [
+														"admin",
+														"users",
+														":id",
+														"unban"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "10000"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "sign in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"17060claribel.wilderman@kerluke.name\",\n    \"password\": \"defaultpassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users/tokens/sign_in",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"tokens",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign up",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ApiKey",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ0ZW5hbnQiOiJwdWJsaWMiLCJuYW1lIjoiYXBpIGtleSIsImp0aSI6IjNlZDNhMTJkLWU2NTctNDUwYS1iNWJkLTdmOWU3ODE5ZTA5OCJ9.wzDYxDAn1-R6GiWw1_AgvNNNjc_3yI2qi6F8YhvOElY",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "example@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "11111111",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "James",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Bond",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/tokens/sign_up",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"tokens",
+						"sign_up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{auth_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users/tokens/info",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"tokens",
+						"info"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

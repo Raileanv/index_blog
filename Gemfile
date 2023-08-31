@@ -66,5 +66,6 @@ gem 'dry-monads'
 gem 'kaminari'
 gem 'paper_trail'
 gem 'pg_search'
+gem 'rubocop'
 gem 'sidekiq'
 gem 'sinatra', require: false # For Sidekiq web UI
