@@ -11,6 +11,6 @@ generators = [
 ]
 
 generators.each do |g|
-  puts " Running #{g}..."
   g.seed
+  puts '✅'
 end

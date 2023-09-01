@@ -9,7 +9,6 @@ module Seeds
     def self.seed
       raise('Only supposed to be ran in Development') unless Rails.env.development?
 
-      Rails.logger.info "Running #{self}..."
       new.generate!
     end
 

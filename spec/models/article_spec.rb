@@ -16,7 +16,7 @@ RSpec.describe Article, type: :model do
 
   # Enum
   it {
-    should define_enum_for(:status).with_values(hidden: 'hidden',
+    should define_enum_for(:status).with_values(hidden:    'hidden',
                                                 published: 'published').backed_by_column_of_type(:string)
   }
 

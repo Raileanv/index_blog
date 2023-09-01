@@ -1,0 +1,406 @@
+AllCops:
+  TargetRubyVersion: 3.1.3
+  DisabledByDefault: true
+  Exclude:
+    - 'node_modules/**/*'
+    - "db/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "bin/**/*"
+    - "log/**/*"
+    - "config/**/*"
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-gitlab-security
+
+#################### Bundler ###############################
+
+Bundler/DuplicatedGem:
+  Description: 'Checks for duplicate gem entries in Gemfile.'
+  Enabled: true
+  VersionAdded: '0.46'
+  Include:
+    - '**/*.gemfile'
+    - '**/Gemfile'
+    - '**/gems.rb'
+Bundler/InsecureProtocolSource:
+  Enabled: true
+
+#################### Layout ###############################
+
+Layout/ArgumentAlignment:
+  Description: >-
+    Align the arguments of a method call if they span more
+    than one line.
+  StyleGuide: '#no-double-indent'
+  Enabled: true
+  VersionAdded: '0.68'
+  VersionChanged: '0.77'
+  EnforcedStyle: with_first_argument
+  SupportedStyles:
+    - with_first_argument
+    - with_fixed_indentation
+  IndentationWidth: ~
+Layout/BlockEndNewline:
+  Description: 'Put end statement of multiline block on its own line.'
+  Enabled: true
+  VersionAdded: '0.49'
+Layout/CaseIndentation:
+  Description: 'Indentation of when in a case/(when|in)/[else/]end.'
+  StyleGuide: '#indent-when-to-case'
+  Enabled: true
+  VersionAdded: '0.49'
+  VersionChanged: '1.16'
+  EnforcedStyle: case
+  SupportedStyles:
+    - case
+    - end
+  IndentOneStep: false
+  IndentationWidth: ~
+Layout/ClassStructure:
+  Description: 'Enforces a configured order of definitions within a class body.'
+  StyleGuide: '#consistent-classes'
+  Enabled: false
+  VersionAdded: '0.52'
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+  ExpectedOrder:
+    - module_inclusion
+    - constants
+    - public_class_methods
+    - initializer
+    - public_methods
+    - protected_methods
+    - private_methods
+Layout/DefEndAlignment:
+  Description: 'Align ends corresponding to defs correctly.'
+  Enabled: true
+  VersionAdded: '0.53'
+  EnforcedStyleAlignWith: start_of_line
+  SupportedStylesAlignWith:
+    - start_of_line
+    - def
+  Severity: warning
+Layout/DotPosition:
+  Description: 'Checks the position of the dot in multi-line method calls.'
+  StyleGuide: '#consistent-multi-line-chains'
+  Enabled: true
+  VersionAdded: '0.49'
+  EnforcedStyle: leading
+  SupportedStyles:
+    - leading
+    - trailing
+Layout/EmptyLineAfterGuardClause:
+  Description: 'Add empty line after guard clause.'
+  Enabled: true
+  VersionAdded: '0.56'
+  VersionChanged: '0.59'
+Layout/EmptyLineAfterMagicComment:
+  Description: 'Add an empty line after magic comments to separate them from code.'
+  StyleGuide: '#separate-magic-comments-from-code'
+  Enabled: true
+  VersionAdded: '0.49'
+Layout/EmptyLineAfterMultilineCondition:
+  Description: 'Enforces empty line after multiline condition.'
+  Enabled: false
+  VersionAdded: '0.90'
+  Reference:
+    - https://github.com/airbnb/ruby#multiline-if-newline
+Layout/EmptyLineBetweenDefs:
+  Description: 'Use empty lines between class/module/method defs.'
+  StyleGuide: '#empty-lines-between-methods'
+  Enabled: true
+  VersionAdded: '0.49'
+  VersionChanged: '1.23'
+  EmptyLineBetweenMethodDefs: true
+  EmptyLineBetweenClassDefs: true
+  EmptyLineBetweenModuleDefs: true
+  AllowAdjacentOneLineDefs: true
+  NumberOfEmptyLines: 1
+Layout/EmptyLines:
+  Description: "Don't use several empty lines in a row."
+  StyleGuide: '#two-or-more-empty-lines'
+  Enabled: true
+  VersionAdded: '0.49'
+Layout/EmptyLinesAroundAccessModifier:
+  Description: "Keep blank lines around access modifiers."
+  StyleGuide: '#empty-lines-around-access-modifier'
+  Enabled: true
+  VersionAdded: '0.49'
+  EnforcedStyle: around
+  SupportedStyles:
+    - around
+    - only_before
+  Reference:
+    - https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#follow-the-coding-conventions
+Layout/ExtraSpacing:
+  Description: 'Do not use unnecessary spacing.'
+  Enabled: true
+  VersionAdded: '0.49'
+  AllowForAlignment: true
+  AllowBeforeTrailingComments: false
+  ForceEqualSignAlignment: false
+Layout/FirstMethodArgumentLineBreak:
+  Description: >-
+    Checks for a line break before the first argument in a
+    multi-line method call.
+  Enabled: false
+  VersionAdded: '0.49'
+Layout/FirstMethodParameterLineBreak:
+  Description: >-
+    Checks for a line break before the first parameter in a
+    multi-line method parameter definition.
+  Enabled: false
+  VersionAdded: '0.49'
+Layout/IndentationConsistency:
+  Description: 'Keep indentation straight.'
+  StyleGuide: '#spaces-indentation'
+  Enabled: true
+  VersionAdded: '0.49'
+  EnforcedStyle: normal
+  SupportedStyles:
+    - normal
+    - indented_internal_methods
+  Reference:
+    - https://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#follow-the-coding-conventions
+Layout/IndentationWidth:
+  Description: 'Use 2 spaces for indentation.'
+  StyleGuide: '#spaces-indentation'
+  Enabled: true
+  VersionAdded: '0.49'
+  Width: 2
+  AllowedPatterns: []
+Layout/LineLength:
+  Description: 'Checks that line length does not exceed the configured limit.'
+  Exclude:
+    - "lib/**/*"
+    - "config/**/*"
+  StyleGuide: '#max-line-length'
+  Enabled: true
+  VersionAdded: '0.25'
+  VersionChanged: '1.4'
+  Max: 120
+  AllowHeredoc: true
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
+  IgnoreCopDirectives: true
+  AllowedPatterns: []
+Layout/MultilineHashKeyLineBreaks:
+  Description: >-
+    Checks that each item in a multi-line hash literal
+    starts on a separate line.
+  Enabled: false
+  VersionAdded: '0.67'
+
+Layout/MultilineMethodArgumentLineBreaks:
+  Description: >-
+    Checks that each argument in a multi-line method call
+    starts on a separate line.
+  Enabled: false
+  VersionAdded: '0.67'
+
+Layout/MultilineMethodCallBraceLayout:
+  Description: >-
+    Checks that the closing brace in a method call is
+    either on the same line as the last method argument, or
+    a new line.
+  Enabled: true
+  VersionAdded: '0.49'
+  EnforcedStyle: symmetrical
+  SupportedStyles:
+    - symmetrical
+    - new_line
+    - same_line
+
+Layout/MultilineMethodCallIndentation:
+  Description: >-
+    Checks indentation of method calls with the dot operator
+    that span more than one line.
+  Enabled: true
+  VersionAdded: '0.49'
+  EnforcedStyle: aligned
+  SupportedStyles:
+    - aligned
+    - indented
+    - indented_relative_to_receiver
+  IndentationWidth: ~
+Layout/RedundantLineBreak:
+  Description: >-
+    Do not break up an expression into multiple lines when it fits
+    on a single line.
+  Enabled: false
+  InspectBlocks: false
+  VersionAdded: '1.13'
+Layout/SpaceAfterMethodName:
+  Description: >-
+    Do not put a space between a method name and the opening
+    parenthesis in a method definition.
+  StyleGuide: '#parens-no-spaces'
+  Enabled: true
+  VersionAdded: '0.49'
+Layout/SpaceAroundOperators:
+  Description: 'Use a single space around operators.'
+  StyleGuide: '#spaces-operators'
+  Enabled: true
+  VersionAdded: '0.49'
+  AllowForAlignment: true
+  EnforcedStyleForExponentOperator: no_space
+  SupportedStylesForExponentOperator:
+    - space
+    - no_space
+Layout/HashAlignment:
+  Description: >-
+    Align the elements of a hash literal if they span more than
+    one line.
+  Exclude:
+    - 'node_modules/**/*'
+  Enabled: true
+  AllowMultipleStyles: true
+  VersionAdded: '0.49'
+  VersionChanged: '1.16'
+  EnforcedHashRocketStyle: table
+  SupportedHashRocketStyles:
+    - key
+    - separator
+    - table
+  EnforcedColonStyle: table
+  SupportedColonStyles:
+    - key
+    - separator
+    - table
+  EnforcedLastArgumentHashStyle: always_inspect
+  SupportedLastArgumentHashStyles:
+    - always_inspect
+    - always_ignore
+    - ignore_implicit
+    - ignore_explicit
+Layout/BlockAlignment:
+  Description: 'Align block ends correctly.'
+  Enabled: true
+  VersionAdded: '0.53'
+  EnforcedStyleAlignWith: either
+  SupportedStylesAlignWith:
+    - either
+    - start_of_block
+    - start_of_line
+
+#################### Lint ###############################
+
+Lint/Debugger:
+  Description: 'Check for debugger calls.'
+  Enabled: true
+  VersionAdded: '0.14'
+  VersionChanged: '1.10'
+  DebuggerMethods:
+    Kernel:
+      - binding.irb
+    Byebug:
+      - byebug
+      - remote_byebug
+      - Kernel.byebug
+      - Kernel.remote_byebug
+    Capybara:
+      - save_and_open_page
+      - save_and_open_screenshot
+    debug.rb:
+      - binding.b
+      - binding.break
+      - Kernel.binding.b
+      - Kernel.binding.break
+    Pry:
+      - binding.pry
+      - binding.remote_pry
+      - binding.pry_remote
+      - Pry.rescue
+    Rails:
+      - debugger
+      - Kernel.debugger
+    RubyJard:
+      - jard
+    WebConsole:
+      - binding.console
+Lint/DuplicateHashKey:
+  Description: 'Check for duplicate keys in hash literals.'
+  Enabled: true
+  VersionAdded: '0.34'
+  VersionChanged: '0.77'
+
+Lint/DuplicateMethods:
+  Description: 'Check for duplicate method definitions.'
+  Exclude:
+    - 'node_modules/**/*'
+  Enabled: true
+  VersionAdded: '0.29'
+Lint/InheritException:
+  Description: 'Avoid inheriting from the `Exception` class.'
+  Enabled: true
+  VersionAdded: '0.41'
+  # The default base class in favour of `Exception`.
+  EnforcedStyle: runtime_error
+  SupportedStyles:
+    - runtime_error
+    - standard_error
+Lint/MissingCopEnableDirective:
+  Description: 'Checks for a `# rubocop:enable` after `# rubocop:disable`.'
+  Enabled: true
+  VersionAdded: '0.52'
+  MaximumRangeSize: .inf
+
+#################### Metrics ###############################
+
+Metrics/AbcSize:
+  Enabled: true
+  Exclude:
+    - 'Rakefile'
+    - 'Guardfile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - '**/*.gemspec'
+    - 'config/**/*.rb'
+    - 'node_modules/**/*.rb'
+    - 'lib/**/*.rb'
+    - 'Gemfile'
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'Rakefile'
+    - 'Guardfile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - '**/*.gemspec'
+    - 'config/**/*.rb'
+    - 'lib/**/*.rb'
+    - 'Gemfile'
+
+Rails/OutputSafety:
+  Enabled: true
+Security/Eval:
+  Enabled: true
+Security/JSONLoad:
+  Enabled: true
+Security/MarshalLoad:
+  Enabled: true
+Security/Open:
+  Enabled: true
+Security/YAMLLoad:
+  Enabled: true
+GitlabSecurity/DeepMunge:
+  Enabled: true
+GitlabSecurity/JsonSerialization:
+  Enabled: true
+GitlabSecurity/PublicSend:
+  Enabled: true
+GitlabSecurity/RedirectToParamsUpdate:
+  Enabled: true
+GitlabSecurity/SendFileParams:
+  Enabled: true
+GitlabSecurity/SqlInjection:
+  Enabled: true
+GitlabSecurity/SystemCommandInjection:
+  Enabled: true

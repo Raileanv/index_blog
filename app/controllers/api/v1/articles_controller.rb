@@ -26,12 +26,12 @@ module Api
 
         render json: {
           articles: @articles,
-          meta: {
-            total_pages: @articles.total_pages,
+          meta:     {
+            total_pages:  @articles.total_pages,
             current_page: @articles.current_page,
-            next_page: @articles.next_page,
-            prev_page: @articles.prev_page,
-            total_count: @articles.total_count
+            next_page:    @articles.next_page,
+            prev_page:    @articles.prev_page,
+            total_count:  @articles.total_count
           }
         }
       end

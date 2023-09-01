@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   def send_devise_notification(notification, *args)
     if notification == :confirmation_instructions
-      devise_mailer.send(notification, self, *args).deliver_later(wait: 5.seconds)
+      devise_mailer.confirmation_instructions(self, *args).deliver_later(wait: 5.seconds)
     else
       super
     end

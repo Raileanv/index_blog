@@ -13,12 +13,7 @@ RUN bundle install
 # Make port 3000 available to the world outside this container
 EXPOSE 3000
 
+ENV POSTGRES_HOST=db
+
 # Define environment variable
 ENV RAILS_ENV=development
-
-# COPY docker_entrypoint.sh /
-# RUN chmod +x /docker_entrypoint.sh
-# ENTRYPOINT ["/docker_entrypoint.sh"]
-
-# Run rails server when the container launches
-# CMD ["rails", "server", "-b", "0.0.0.0"]

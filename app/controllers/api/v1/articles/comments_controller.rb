@@ -12,12 +12,12 @@ module Api
 
           render json: {
             comments: @comments,
-            meta: {
-              total_pages: @comments.total_pages,
+            meta:     {
+              total_pages:  @comments.total_pages,
               current_page: @comments.current_page,
-              next_page: @comments.next_page,
-              prev_page: @comments.prev_page,
-              total_count: @comments.total_count
+              next_page:    @comments.next_page,
+              prev_page:    @comments.prev_page,
+              total_count:  @comments.total_count
             }
           }
         end

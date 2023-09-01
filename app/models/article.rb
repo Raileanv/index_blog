@@ -12,13 +12,13 @@ class Article < ApplicationRecord
   DEFAULT_COVER = 'https://dummyimage.com/300x300/8adc16/a97b60.png?text='
 
   pg_search_scope :search_by_criteria,
-                  against: [:title],
+                  against:            [:title],
                   associated_against: {
-                    author: %i[first_name last_name],
-                    tags: [:name],
+                    author:   %i[first_name last_name],
+                    tags:     [:name],
                     category: [:name]
                   },
-                  using: {
+                  using:              {
                     tsearch: { prefix: true }
                   }
 
