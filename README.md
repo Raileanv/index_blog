@@ -20,7 +20,7 @@ docker-compose up --build
 ```
 
 ## API Endpoints
-
+Postman collection you can find in the root directory of the project, in directory `postman`.
 
 ### Setting Up Postman Environment
 To make the most of the API endpoints, you'll need to set up your Postman environment with the necessary variables.
@@ -42,6 +42,9 @@ Postman will automatically replace the variable placeholders with their correspo
 ### Endpoints
 
 #### User Authentication
+
+*using base_url*
+
 **Sign Up:**
 
 Method: **POST**
@@ -50,19 +53,19 @@ Headers:
  - ApiKey: Bearer [API_KEY]
 
 Body:
-- email: User email
-- password: User password
-- first_name: User first name
-- last_name: User last name
-- avatar: User avatar (file)
+- email: User email [String]
+- password: User password [String]
+- first_name: User first name [String]
+- last_name: User last name [String]
+- avatar: User avatar [File]
 
 **Sign In:**
 
 Method: **POST**
 Endpoint: `/users/tokens/sign_in`
 Body:
-- email: User email
-- password: User password
+- email: User email [String]
+- password: User password [String]
 
 **Token Info:**
 
@@ -73,6 +76,8 @@ Headers:
 
 #### Articles
 
+*using api_v1_base_url*
+
 **Create:**
 
 Method: **POST**
@@ -81,12 +86,12 @@ Headers:
 - Authorization: Bearer [AUTH_TOKEN]
 
 Body:
-- title: Article title
-- description: Article description
-- status: Article status (e.g., published)
-- category_id: Category ID
-- tag_list: Comma-separated list of tags
-- cover: Article cover (file)
+- title: Article title [String]
+- description: Article description [String]
+- status: Article status  [enum: hidden, published]
+- category_id: Category ID [Integer]
+- tag_list: Comma-separated list of tags [String]
+- cover: Article cover [File]
 
 **Update:**
 
@@ -96,10 +101,10 @@ Headers:
 - Authorization: Bearer [AUTH_TOKEN]
 
 Body:
-- title: Article title
-- cover: Article cover (file)
-- status: Article status
-- tag_list: Comma-separated list of tags
+- title: Article title [String]
+- cover: Article cover [File]
+- status: Article status [enum: hidden, published]
+- tag_list: Comma-separated list of tags [String]
 
 **Delete:**
 
@@ -116,10 +121,10 @@ Headers:
 - Authorization: Bearer [AUTH_TOKEN]
 
 Body:
-- page: Pagination page number
-- query: Search query
-- start_date: Start date for filtering
-- end_date: End date for filtering
+- page: Pagination page number (default: 1)
+- query: Search query  [String]
+- start_date: Start date for filtering [Date]
+- end_date: End date for filtering [Date]
 
 **View Single Article:**
 
@@ -138,7 +143,7 @@ Headers:
 - Authorization: Bearer [AUTH_TOKEN]
 
 Body:
-- value: Comment content
+- value: Comment content [String]
 
 **Like Comment:**
 
@@ -162,7 +167,7 @@ Headers:
 - Authorization: Bearer [AUTH_TOKEN]
 
 Body:
-- page: Pagination page number
+- page: Pagination page number (default: 1)
 
 #### Article Versions
 
