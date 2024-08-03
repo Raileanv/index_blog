@@ -1,3 +1,79 @@
+# Here is the test:
+
+### Build an RoR API app that should cover:
+
+1. User
+  - Registration  
+  - Authentification
+  - Email confirmation
+  - Recover account
+2. Article
+	- Create
+	- View one article + comments
+	- View articles
+	- Edit
+	- Delete(soft)
+3. Comments
+	- Create
+	- View
+4. Categories
+	- View all
+
+##### Models:
+
+1. User:
+	- avatar(image)
+	- first_name
+	- last_name
+	- email
+	- password
+2. Article
+	- title
+	- description
+	- cover (image)
+	- tags
+	- category
+	- author
+3. Tag
+	- name
+4. Category
+	- name
+5. Comment
+	- value
+	- user
+
+##### What needs to be done:
+- API documentation (Readme + (Swagger or Postman)
+- Dockerized app (the app should run in docker/docker-compose)
+- The DB should be PostgreSQL
+- The confirmation email should be sent 5 seconds after the user was registered (we should see it in the sidekiq UI)
+- 90% test coverage
+- Create seeds for the DB with 10k users and 20k articles, 3 categories
+- avatar and cover should be uploaded to S3
+- Articles can be published or hidden
+- Tags should be created when an article is created/all downcased characters/unique
+- Emails should have a template HTML version
+- Users can edit/delete only their articles
+- Search articles by [author, category, tags, title(we can write a few words from the title and should match), created_at date] + pagination (default=10 items per page but we can change it in the request)
+- comments also should have pagination (default 25 records per page)
+- site admin can ban authors from the app and they will not be able to authenticate
+- site admin can remove author ban
+- We should be able to rollback the article[all fields] to the last 5 versions
+ex:
+v1(created): title: Lorem ispum dollor
+v2(edited): title: Lorem ipsum dollor
+v3(current version): title: Lorem ipsum dol
+
+from this example, we should be able to roll back the article to v1 or v2.
+- Implement Comments rating and sort comments by rating in the article
+- Please archive(zip) your work and reply to this email.
+
+** Let's keep in mind that this API will get big and/or your code will need to be isolated/improved. **
+
+If you have any questions please let me know.
+
+Good luck!
+
 # RoR API Application
 This is a Rails API application that provides functionalities for users and articles,
 including authentication, CRUD operations for articles, comments, and more.
